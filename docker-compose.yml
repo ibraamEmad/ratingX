@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  app:
+    container_name: ${APP_NAME}_web
+    build: .
+    image: docker-laravel-artisan
+    ports:
+      - "8080:80"   
+    environment:
+      # - "DB_PORT=3306"
+      - "DB_HOST=db"
+    links:
+      - db
+ 
+  db:
+    image: mysql:5.6
+    restart: always
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_DATABASE=ratingX
+      - MYSQL_ALLOW_EMPTY_PASSWORD=false
+      - MYSQL_PASSWORD=1907mx1997
+      - MYSQL_ROOT_PASSWORD=1907mx1997
+      # ports:
+        # - "3306:3306"
+    command: mysqld --skip-ssl
